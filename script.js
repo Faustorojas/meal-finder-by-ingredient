@@ -10,6 +10,7 @@ const instruction = document.querySelector(".instructions")
 const searchItems = async (e) => {
    e.preventDefault()
    searchResult.innerHTML = ""
+   storageResult(inputBox.value)
    try{
       let data = await fetch(`${recipeLink}${inputBox.value.trim()}`)
       let response = await data.json()
@@ -55,6 +56,44 @@ const showDetails =  async (e) => {
 
 }
 
+//save last search in localStorage
+
+const storageResult =  (data) =>{
+  let meal 
+  if(localStorage.getItem("meal") == null){
+   meal = ""
+  } else{
+   meal = JSON.parse(localStorage.getItem("meal"))
+  }
+
+  meal = data
+  localStorage.setItem("meal", JSON.stringify(meal))
+
+   
+}
+
+//show last search in the dom from localStorage
+const updateDom = async () => {
+   try{
+      let data = await fetch(`${recipeLink}${JSON.parse(localStorage.getItem("meal"))}`)
+      let response = await data.json()
+      response.meals.forEach(data => {
+         searchResult.innerHTML += `<div class="search-item" data-id="${data.idMeal}">
+         <img src="${data.strMealThumb}" alt="food" class="item-photo">
+         <p class="hd-secundary fw-semi-bold">${data.strMeal}</p>
+         <button class="btn">Get Recipe</button>
+       </div>`
+   
+      
+      });
+   
+      
+   } catch{
+      searchResult.innerHTML = `<h1>Meal Not Found</h1>`
+   }
+}
+
+
 
 
 //Event Listeners
@@ -65,6 +104,8 @@ instruction.addEventListener("click", (e) => {
       instruction.classList.remove("show")
     }
 })
+document.addEventListener("DOMContentLoaded", updateDom)
+
 
 
 

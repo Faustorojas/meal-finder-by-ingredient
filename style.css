@@ -1,0 +1,323 @@
+:root{
+    --ff-primary: 'Poppins', sans-serif;
+    --clr-primary: #d65108;
+    --clr-secundary: #b54507;
+    --hd-primary: 1.6rem;
+    --hd-secundary: 1.1rem;
+    --fw-semi-bold: 700;
+    --clr-text: gray;
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  
+}
+
+/* Remove default margin */
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+html,
+body{
+   min-height: 100%;
+}
+
+/* Set core body defaults */
+body {
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  font-family: var(--ff-primary-body);
+  
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+p{
+   font-family: var(--ff-secundary-header);
+}
+
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+   scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* utilities classes */
+
+.ff-primary{
+    font-family: var(--ff-primary);
+}
+
+.clr-primary{
+    color: var(--clr-primary);
+}
+
+.clr-secundary{
+    color: var(--clr-secundary);
+}
+
+.clr-text{
+    color: gray;
+}
+
+.hd-primary{
+    font-size: var(--hd-primary);
+}
+
+.hd-secundary{
+    font-size: var(--hd-secundary);
+}
+
+.fw-semi-bold{
+    font-weight: var(--fw-semi-bold);
+}
+
+.container{
+    width: min(1200px, 100% - 2rem);
+    margin-inline: auto;
+}
+
+.input-box::placeholder{
+    color: var(--clr-primary);
+    
+}
+
+.btn{
+    background-color: var(--clr-primary);
+    outline: none;
+    border: 0;
+    color: white;
+    padding: .4em 1.5em;
+    border-radius: 2rem;
+    cursor: pointer;
+}
+
+.btn:hover,
+.btn:focus-visible{
+    background-color: var(--clr-secundary);
+}
+
+.btn[data-reverse="btn-size-cut"]{
+    border-radius: 0rem 2rem 2rem 0rem;
+    margin-left: 0;
+    padding: .45em .5em;
+    transform: translateX(-2.3rem)  translateY(-0.1rem);
+    
+}
+
+
+i{
+    font-size: 1.1rem;
+    text-align: center;
+}
+/*  Start   */
+
+.search-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2em;
+    text-align: center;
+    margin-bottom: 4em;
+}
+
+.search-wrapper :not(:first-child){
+    padding-top: .3em;
+}
+
+.input-box{
+    width: 20rem;
+    height: 2.25rem;
+    border-radius: 2rem;
+    border: 1px solid gray;
+    padding-left: 1em;
+    position: relative;
+    margin-right: 0;
+   
+    
+}
+
+
+/*  results items */
+
+.search-title{
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.search-results{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.search-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0rem 0rem 1rem .1rem hsl(0, 0%, 70%);
+    min-width: 20rem;
+    flex-basis: 31%;
+    height: 25rem;
+    margin-inline: auto;
+    border-radius: .5rem;
+    padding-bottom: 2em;
+}
+
+
+
+.search-item :not(:last-child){
+    padding-bottom: .7em;
+}
+
+.item-photo{
+ border-radius: .5rem .5rem 0rem 0rem;
+ min-height: 80%;
+ min-width: 100%;
+ 
+}
+
+
+/* pop up starts */
+
+.instructions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--clr-primary);
+    color: white;
+    border-radius: .5rem;
+    text-align: center;
+    padding: 5em 1.5em;
+    max-width: 33rem;
+    min-width: 33rem;
+    max-height: 33rem;
+    font-family: var(--ff-primary);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+   transform: translate(-50%, -50%);
+   overflow-y: scroll;
+   display: none;
+}
+
+.show{
+    display: block;
+}
+
+@media(max-width:574px){
+    .instructions{
+        min-width: 25rem;
+    }
+}
+
+@media(max-width:446px){
+    .instructions{
+        min-width: 21rem;
+    }
+
+    .input-box{
+        width: 16rem;
+    }
+}
+
+.instructions-x{
+    background-color: white;
+    color: black;
+    border-radius: 50%;
+    font-weight: bold;
+    padding: .05em .4em;
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    cursor: pointer;
+}
+
+.instructions-name{
+    padding-bottom: .8em;
+}
+
+
+
+.instructions-type{
+    background-color: white;
+    padding: .1em .5em .1em;
+    color: var(--clr-primary);
+    border-radius: .5em;
+    font-size: .8rem;
+    font-weight: 500;
+    
+}
+
+.instructions-starts{
+    padding-top: .8em;
+    font-weight: 700;
+}
+
+
+.instructions-text{
+    font-size: .9rem;
+    padding-top: .8em;
+    padding-bottom: .8em;
+}
+
+.instructions-photo{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-inline: auto;
+    
+}
+
+.instructions-link{
+    color: white;
+    font-weight: 700;
+    padding-top: .8em;
+}
+
+
+
+
